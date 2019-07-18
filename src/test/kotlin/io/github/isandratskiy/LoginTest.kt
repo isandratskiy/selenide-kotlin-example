@@ -1,47 +1,42 @@
 package io.github.isandratskiy
 
-import com.codeborne.selenide.Configuration.*
+import io.github.isandratskiy.core.open
 import io.github.isandratskiy.pages.LoginPage
-import io.github.isandratskiy.pages.SecurePage
 import org.amshove.kluent.shouldContain
 import org.junit.jupiter.api.*
-import org.junit.jupiter.api.TestInstance
-import org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS
-import io.qameta.allure.selenide.AllureSelenide
-import com.codeborne.selenide.logevents.SelenideLogger
-import org.amshove.kluent.shouldBeEqualTo
+import io.github.isandratskiy.extensions.SetupExtension
+import io.github.isandratskiy.pages.ExampleTypes.*
+import io.github.isandratskiy.pages.MainPage
+import org.amshove.kluent.shouldEqual
+import org.junit.jupiter.api.extension.ExtendWith
+import org.junit.jupiter.api.parallel.Execution
+import org.junit.jupiter.api.parallel.ExecutionMode
 
-@TestInstance(PER_CLASS)
+@ExtendWith(SetupExtension::class)
+@Execution(ExecutionMode.CONCURRENT)
 class LoginTest {
-
-    private val loginPage = LoginPage()
-
-    @BeforeAll
-    fun setup() {
-        SelenideLogger.addListener(
-            "allure", AllureSelenide().screenshots(true).savePageSource(true)
-        )
-        startMaximized = true
-        browserCapabilities.acceptInsecureCerts()
-        browserCapabilities.setCapability("enableVNC", true)
-        browserCapabilities.setCapability("enableVideo", false)
-        remote = "http://192.168.1.232:4444/wd/hub"
-    }
 
     @Test
     fun `can login with correct credentials`() {
-        loginPage.open()
-            .login("tomsmith", "SuperSecretPassword!")
-            .clickLoginButton(SecurePage::class)!!
-            .getErrorMessage()?.shouldContain("You logged into a secure area!")
-            .also { loginPage.checkPage()?.shouldBeEqualTo("/secure") }
+        open(LoginPage::class, "/login")
+            .getLoginForm()
+            .loginWith("tomsmith", "SuperSecretPassword!")
+            .getFlashMessage().getText().shouldContain("You logged into a secure area!")
     }
 
     @Test
     fun `can't login with fake credentials`() {
-        loginPage.open()
-            .login("johndoe", "InvalidPassword!")
-            .clickLoginButton(LoginPage::class)!!
-            .getErrorMessage()?.shouldContain("Your username is invalid!")
+        open(LoginPage::class, "/login")
+            .getLoginForm()
+            .loginWith("johndoe", "InvalidPassword!")
+            .at(LoginPage::class)
+            .getFlashMessage().getText().shouldContain("Your username is invalid!")
+    }
+
+    @Test
+    fun `can open available example`() {
+        open(MainPage::class)
+            .openAvailableExample(FORM_AUTHENTICATION)
+            .checkPageURL().shouldEqual("/login")
     }
 }

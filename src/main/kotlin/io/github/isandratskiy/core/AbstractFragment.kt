@@ -7,5 +7,5 @@ open class AbstractFragment (
 ) {
     protected fun getRootFragment(): SelenideElement = rootFragment
 
-    protected fun getFragmentText(): String = rootFragment.text
+    open fun getText(): String = rootFragment.text
 }

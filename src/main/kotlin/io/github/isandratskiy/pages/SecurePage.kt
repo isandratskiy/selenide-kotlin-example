@@ -1,13 +1,11 @@
 package io.github.isandratskiy.pages
 
-import io.github.isandratskiy.components.FlashMessageFragment
-import org.openqa.selenium.By
+import io.github.isandratskiy.fragments.FlashMessageFragment
+import org.openqa.selenium.By.*
 
-class SecurePage : AbstractBasePage() {
+class SecurePage : AbstractPage() {
 
-    private val LOGOUT_BUTTON = By.cssSelector("button.secondary")
+    private val logoutButton = cssSelector("button.secondary")
 
-    fun getErrorMessage(): String? {
-        return FlashMessageFragment().getMessage()
-    }
+    fun getFlashMessage() : FlashMessageFragment = FlashMessageFragment()
 }

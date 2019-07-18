@@ -1,15 +1,28 @@
 package io.github.isandratskiy.pages
 
+import com.codeborne.selenide.Condition.*
+import com.codeborne.selenide.ElementsCollection
 import com.codeborne.selenide.Selenide.*
 import com.codeborne.selenide.SelenideElement
+import io.qameta.allure.Step
 import org.openqa.selenium.By.*
 
-open class MainPage {
+class MainPage(
+    private val element: SelenideElement = element("#content.large-12")
+) : AbstractPage() {
 
-    private val PROJECT_ROW = cssSelector("span.project-name")
-    private val NEW_PROJECT_BUTTON = xpath("//*[text()[contains(.,'New project')]]")
+    private val rows = cssSelector(".columns ul li a")
 
-    private fun getProjectRows(): List<SelenideElement> {
-        return elements(PROJECT_ROW).filter { it.text.contains("projects") }
+    private fun getExampleRows(): ElementsCollection = element.`$$`(rows)
+
+    @Step("Open available example: {exampleTypes} page")
+    fun openAvailableExample(exampleTypes: ExampleTypes): MainPage {
+        getExampleRows().filterBy(text(exampleTypes.type)).find(visible).click()
+        return this
     }
+}
+
+enum class ExampleTypes(val type: String) {
+    FORM_AUTHENTICATION("Form Authentication"),
+    ADD_REMOVE_ELEMENTS("Add/Remove Elements")
 }
