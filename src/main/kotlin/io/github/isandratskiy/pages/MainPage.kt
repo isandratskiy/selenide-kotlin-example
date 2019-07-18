@@ -5,15 +5,12 @@ import com.codeborne.selenide.ElementsCollection
 import com.codeborne.selenide.Selenide.*
 import com.codeborne.selenide.SelenideElement
 import io.qameta.allure.Step
-import org.openqa.selenium.By.*
 
 class MainPage(
     private val element: SelenideElement = element("#content.large-12")
 ) : AbstractPage() {
 
-    private val rows = cssSelector(".columns ul li a")
-
-    private fun getExampleRows(): ElementsCollection = element.`$$`(rows)
+    private fun getExampleRows(): ElementsCollection = element.`$$`(".columns ul li a")
 
     @Step("Open available example: {exampleTypes} page")
     fun openAvailableExample(exampleTypes: ExampleTypes): MainPage {
