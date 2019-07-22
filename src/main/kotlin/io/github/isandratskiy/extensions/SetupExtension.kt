@@ -16,6 +16,7 @@ class SetupExtension : BeforeEachCallback, AfterEachCallback {
         )
         Configuration.startMaximized = true
         Configuration.browserCapabilities.acceptInsecureCerts()
+        Configuration.fastSetValue = true
         Configuration.browserCapabilities.setCapability("enableVNC", true)
         Configuration.browserCapabilities.setCapability("enableVideo", false)
         Configuration.timeout = TimeUnit.SECONDS.toMillis(15)

@@ -1,4 +1,4 @@
-package io.github.isandratskiy.core
+package io.github.isandratskiy.fragments
 
 import com.codeborne.selenide.SelenideElement
 
