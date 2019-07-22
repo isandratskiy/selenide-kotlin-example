@@ -15,11 +15,13 @@ class SetupExtension : BeforeEachCallback, AfterEachCallback {
             "allure", AllureSelenide().screenshots(true).savePageSource(true)
         )
         Configuration.startMaximized = true
-        Configuration.browserCapabilities.acceptInsecureCerts()
         Configuration.fastSetValue = true
+        Configuration.browserCapabilities.acceptInsecureCerts()
+        Configuration.browserCapabilities.setCapability("noProxy", true)
         Configuration.browserCapabilities.setCapability("enableVNC", true)
         Configuration.browserCapabilities.setCapability("enableVideo", false)
         Configuration.timeout = TimeUnit.SECONDS.toMillis(15)
+        Configuration.browser = "chrome"
         Configuration.remote = "http://0.0.0.0:4444/wd/hub"
         open("https://the-internet.herokuapp.com")
     }

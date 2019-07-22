@@ -77,6 +77,12 @@ test {
     ]
 }
 
+tasks.withType(Test).all { testTask ->
+    testTask.systemProperties['file.encoding'] = 'UTF-8'
+    testTask.testLogging.showStandardStreams = true
+    testTask.outputs.upToDateWhen { false }
+}
+
 allure {
     version = allureVersion
     aspectjweaver = true

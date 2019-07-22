@@ -4,14 +4,27 @@ import java.lang.System.*
 
 class WebDriverFactory {
     companion object {
-        fun createInstance(): Chrome? {
+        fun createInstance() {
             when (getBrowserProperty()) {
-                Browser.Chrome.toString() -> return Chrome()
-                else -> return null
+                "firefox" -> {
+
+                }
+                "chrome" -> {
+
+                }
+                "remote.chrome" -> {
+
+                }
+                "remote.firefox" -> {
+
+                }
+                else -> {
+                }
             }
         }
 
         fun getBrowserProperty() = getProperty("browser")
+
     }
 }
 
@@ -23,6 +36,6 @@ class FireFox {
 
 }
 
-enum class Browser() {
+enum class Browser {
     Chrome, Firefox
 }
