@@ -17,6 +17,6 @@ class AvailableExampleTest {
     fun `can open available example`() {
         open(MainPage::class)
             .openAvailableExample(FORM_AUTHENTICATION)
-            .checkPageURL().shouldEqual("/login")
+            .getCurrentURL().shouldEqual("/login")
     }
 }
