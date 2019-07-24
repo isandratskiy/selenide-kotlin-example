@@ -6,49 +6,46 @@ import java.util.concurrent.TimeUnit.*
 
 class DriverFactory {
     companion object {
-        fun createDriverInstance() {
-            when (getBrowserProperty()) {
-                Browser.Firefox.toString() -> FireFox()
-                Browser.Chrome.toString() -> Chrome()
-                else -> Chrome()
-            }
+        fun createDriverInstance() = when (getBrowserProperty()) {
+            Browser.Firefox.toString() -> Browser.Firefox.configure()
+            Browser.Chrome.toString() -> Browser.Chrome.configure()
+            else -> Browser.Chrome.configure()
         }
     }
 }
 
-private class Chrome {
-    init {
-        startMaximized = true
-        fastSetValue = true
-        browserCapabilities.acceptInsecureCerts()
-        browserCapabilities.setCapability("enableVNC", true)
-        browserCapabilities.setCapability("enableVideo", false)
-        timeout = SECONDS.toMillis(15)
-        browser = "chrome"
-        getRemoteInstance()
-    }
+private enum class Browser {
+    Chrome{
+        override fun configure() {
+            startMaximized = true
+            fastSetValue = true
+            browserCapabilities.acceptInsecureCerts()
+            browserCapabilities.setCapability("enableVNC", true)
+            browserCapabilities.setCapability("enableVideo", false)
+            timeout = SECONDS.toMillis(15)
+            browser = "chrome"
+            setRemoteInstance()
+        }
+    },
+    Firefox {
+        override fun configure() {
+            startMaximized = true
+            fastSetValue = true
+            browserCapabilities.acceptInsecureCerts()
+            browserCapabilities.setCapability("noProxy", true)
+            browserCapabilities.setCapability("enableVNC", true)
+            browserCapabilities.setCapability("enableVideo", false)
+            timeout = SECONDS.toMillis(15)
+            browser = "firefox"
+            setRemoteInstance()
+        }
+    };
+
+    abstract fun configure()
 }
 
-private class FireFox {
-    init {
-        startMaximized = true
-        fastSetValue = true
-        browserCapabilities.acceptInsecureCerts()
-        browserCapabilities.setCapability("noProxy", true)
-        browserCapabilities.setCapability("enableVNC", true)
-        browserCapabilities.setCapability("enableVideo", false)
-        timeout = SECONDS.toMillis(15)
-        browser = "firefox"
-        getRemoteInstance()
-    }
-}
-
-private fun getRemoteInstance() {
+private fun setRemoteInstance() {
     remote = "http://0.0.0.0:4444/wd/hub"
 }
 
 private fun getBrowserProperty() = getProperty("browser")
-
-enum class Browser {
-    Chrome, Firefox
-}
