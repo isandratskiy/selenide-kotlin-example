@@ -15,7 +15,7 @@ class DriverFactory {
 }
 
 private enum class Browser {
-    Chrome{
+    Chrome {
         override fun configure() {
             startMaximized = true
             fastSetValue = true
