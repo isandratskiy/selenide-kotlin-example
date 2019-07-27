@@ -5,6 +5,7 @@ version '0.0.1'
 apply plugin: 'java'
 apply plugin: 'kotlin'
 apply plugin: 'io.qameta.allure'
+apply plugin: 'com.adarshr.test-logger'
 
 
 sourceCompatibility = 1.8
@@ -19,6 +20,7 @@ buildscript {
     ext.selenideVersion = '5.2.3'
     ext.kluentVersion = '1.49'
     ext.webdriverManagerVersion = '2.2.1'
+    ext.gradleLoggerVersion = '1.7.0'
 
     repositories {
         jcenter()
@@ -29,6 +31,7 @@ buildscript {
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}"
         classpath "io.qameta.allure:allure-gradle:${allureGradleVersion}"
+        classpath "com.adarshr:gradle-test-logger-plugin:${gradleLoggerVersion}"
     }
 }
 
@@ -55,13 +58,22 @@ compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
 
-test {
+tasks.withType(Test) {
+
     useJUnitPlatform()
 
     testLogging {
-        showStandardStreams = true
-        events "passed", "skipped", "failed"
-        exceptionFormat = "full"
+        testlogger {
+            theme 'mocha-parallel'
+            showStandardStreams false
+            showExceptions true
+            showSummary true
+            showPassed true
+            showSkipped true
+            showFailed true
+            showCauses true
+            slowThreshold 1000
+        }
     }
 
     reports {
@@ -69,11 +81,22 @@ test {
     }
 
     systemProperties = [
-            'browser': "${browser}",
             'junit.jupiter.execution.parallel.enabled': true,
             'junit.jupiter.execution.parallel.config.strategy': 'fixed',
             'junit.jupiter.execution.parallel.config.fixed.parallelism': 2
     ]
+}
+
+test {
+    systemProperties['browser'] = 'Chrome'
+}
+
+task firefox(type: Test) {
+    systemProperties['browser'] = 'Firefox'
+}
+
+task local(type: Test) {
+    systemProperties['browser'] = 'Local'
 }
 
 allure {
@@ -87,6 +110,6 @@ allure {
     }
 }
 
-task gradleUpdate(type: Wrapper) {
+task updateGradle(type: Wrapper) {
     gradleVersion = '5.5.1'
 }

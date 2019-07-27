@@ -9,7 +9,7 @@ class DriverFactory {
         fun createDriverInstance() = when (getBrowserProperty()) {
             Browser.Firefox.toString() -> Browser.Firefox.configure()
             Browser.Chrome.toString() -> Browser.Chrome.configure()
-            else -> Browser.Chrome.configure()
+            else -> LocalBrowser.Chrome.configure()
         }
     }
 }
@@ -38,6 +38,19 @@ private enum class Browser {
             timeout = SECONDS.toMillis(15)
             browser = "firefox"
             setRemoteInstance()
+        }
+    };
+
+    abstract fun configure()
+}
+
+private enum class LocalBrowser {
+    Chrome {
+        override fun configure() {
+            startMaximized = true
+            fastSetValue = true
+            browserCapabilities.acceptInsecureCerts()
+            timeout = SECONDS.toMillis(15)
         }
     };
 
