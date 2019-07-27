@@ -96,7 +96,10 @@ task firefox(type: Test) {
 }
 
 task local(type: Test) {
-    systemProperties['browser'] = 'Local'
+    systemProperties = [
+            'browser': 'Local',
+            'junit.jupiter.execution.parallel.enabled': false
+    ]
 }
 
 allure {
