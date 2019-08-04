@@ -48,7 +48,7 @@ dependencies {
     compile("com.codeborne:selenide:${selenideVersion}")
     compile("io.qameta.allure:allure-selenide:${allureVersion}")
     compile("org.amshove.kluent:kluent:${kluentVersion}")
-    compile("org.junit.jupiter:junit-jupiter:${junitJupiterVersion}")
+    testCompile("org.junit.jupiter:junit-jupiter:${junitJupiterVersion}")
 }
 
 compileKotlin {

@@ -4,7 +4,7 @@ import io.github.isandratskiy.core.open
 import io.github.isandratskiy.pages.LoginPage
 import org.amshove.kluent.shouldContain
 import org.junit.jupiter.api.*
-import io.github.isandratskiy.extensions.SetupExtension
+import io.github.isandratskiy.extension.SetupExtension
 import org.junit.jupiter.api.extension.ExtendWith
 import org.junit.jupiter.api.parallel.Execution
 import org.junit.jupiter.api.parallel.ExecutionMode.*

@@ -1,7 +1,7 @@
 package io.github.isandratskiy
 
 import io.github.isandratskiy.core.open
-import io.github.isandratskiy.extensions.SetupExtension
+import io.github.isandratskiy.extension.SetupExtension
 import io.github.isandratskiy.pages.ExampleTypes.*
 import io.github.isandratskiy.pages.MainPage
 import org.amshove.kluent.shouldEqual

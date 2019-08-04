@@ -9,6 +9,6 @@ import kotlin.reflect.full.createInstance
 
 @Step("Open {url} page")
 fun <K : AbstractPage> open(pageObjectClass: KClass<K>, url: String = EMPTY): K {
-    getSelenideDriver().open("https://the-internet.herokuapp.com$url")
+    getSelenideDriver().open(url)
     return pageObjectClass.createInstance()
 }

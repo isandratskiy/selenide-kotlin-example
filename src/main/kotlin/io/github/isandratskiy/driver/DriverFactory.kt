@@ -22,7 +22,7 @@ private enum class Browser {
             browserCapabilities.acceptInsecureCerts()
             browserCapabilities.setCapability("enableVNC", true)
             browserCapabilities.setCapability("enableVideo", false)
-            timeout = SECONDS.toMillis(15)
+            timeout = SECONDS.toMillis(20)
             browser = "chrome"
             setRemoteInstance()
         }
@@ -35,7 +35,7 @@ private enum class Browser {
             browserCapabilities.setCapability("noProxy", true)
             browserCapabilities.setCapability("enableVNC", true)
             browserCapabilities.setCapability("enableVideo", false)
-            timeout = SECONDS.toMillis(15)
+            timeout = SECONDS.toMillis(20)
             browser = "firefox"
             setRemoteInstance()
         }
@@ -50,7 +50,8 @@ private enum class LocalBrowser {
             startMaximized = true
             fastSetValue = true
             browserCapabilities.acceptInsecureCerts()
-            timeout = SECONDS.toMillis(15)
+            timeout = SECONDS.toMillis(20)
+            baseUrl = "https://the-internet.herokuapp.com"
         }
     };
 
@@ -58,6 +59,7 @@ private enum class LocalBrowser {
 }
 
 private fun setRemoteInstance() {
+    baseUrl = "https://the-internet.herokuapp.com"
     remote = "http://0.0.0.0:4444/wd/hub"
 }
 
