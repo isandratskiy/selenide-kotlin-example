@@ -6,29 +6,29 @@ import com.codeborne.selenide.Configuration.browser
 
 
 
-class DriverFactory {
+class WebDriverFactory {
     companion object {
-        fun createDriverInstance() = when (getBrowserProperty()) {
-            Browser.Firefox.toString() -> Browser.Firefox.configure()
-            Browser.Chrome.toString() -> Browser.Chrome.configure()
+        fun createWebDriverInstance() = when (getBrowserProperty()) {
+            RemoteBrowser.Firefox.toString() -> RemoteBrowser.Firefox.configure()
+            RemoteBrowser.Chrome.toString() -> RemoteBrowser.Chrome.configure()
             else -> LocalBrowser.Chrome.configure()
         }
     }
 }
 
-private enum class Browser {
+private enum class RemoteBrowser {
     Chrome {
         override fun configure() {
             setRemoteCapabilities()
-            browser = "chrome"
             setRemoteInstance()
+            browser = "chrome"
         }
     },
     Firefox {
         override fun configure() {
             setRemoteCapabilities()
-            browser = "firefox"
             setRemoteInstance()
+            browser = "firefox"
         }
     };
 
