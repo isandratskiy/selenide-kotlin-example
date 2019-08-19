@@ -12,6 +12,9 @@ class SetupExtension : BeforeEachCallback, AfterEachCallback {
     override fun beforeEach(context: ExtensionContext?) {
         addListener("allure", Allure().screenshots(true).savePageSource(false))
         baseUrl = "https://the-internet.herokuapp.com"
+        browserSize = "1920x1080"
+        fastSetValue = true
+        timeout = 10000
         createWebDriverInstance()
     }
 

@@ -18,9 +18,9 @@ class ChromeDriverProvider : WebDriverProvider {
 
 private fun getOptions(): ChromeOptions {
     val options = ChromeOptions()
+    options.setHeadless(true)
     options.setAcceptInsecureCerts(true)
-    options.addArguments("--headless")
-    options.addArguments("--start-maximized")
+    options.addArguments("--no-sandbox")
     options.addArguments("--block-new-web-contents")
     return options
 }
