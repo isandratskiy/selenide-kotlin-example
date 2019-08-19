@@ -19,7 +19,8 @@ class LoginTest {
         open(LoginPage::class, "/login")
             .getLoginForm()
             .loginWith("tomsmith", "SuperSecretPassword!")
-            .getFlashMessage().getText().shouldContain("You logged into a secure area!")
+            .getFlashMessage()
+            .getText().shouldContain("You logged into a secure area!")
     }
 
     @Test
@@ -28,6 +29,7 @@ class LoginTest {
             .getLoginForm()
             .loginWith("johndoe", "InvalidPassword!")
             .at(LoginPage::class)
-            .getFlashMessage().getText().shouldContain("Your username is invalid!")
+            .getFlashMessage()
+            .getText().shouldContain("Your username is invalid!")
     }
 }
