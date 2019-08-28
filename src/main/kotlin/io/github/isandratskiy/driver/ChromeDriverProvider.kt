@@ -21,6 +21,5 @@ private fun getOptions(): ChromeOptions {
     options.setHeadless(true)
     options.setAcceptInsecureCerts(true)
     options.addArguments("--no-sandbox")
-    options.addArguments("--block-new-web-contents")
     return options
 }
