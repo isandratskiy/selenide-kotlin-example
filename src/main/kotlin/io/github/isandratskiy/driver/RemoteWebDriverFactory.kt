@@ -4,8 +4,6 @@ import com.codeborne.selenide.Configuration.*
 import java.lang.System.*
 import com.codeborne.selenide.Configuration.browser
 
-
-
 class WebDriverFactory {
     companion object {
         fun createWebDriverInstance() = when (getBrowserProperty()) {

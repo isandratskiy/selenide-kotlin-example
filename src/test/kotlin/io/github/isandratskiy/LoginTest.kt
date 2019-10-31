@@ -13,7 +13,6 @@ import org.junit.jupiter.api.parallel.ExecutionMode.*
 @Execution(CONCURRENT)
 @ExtendWith(SetupExtension::class)
 class LoginTest {
-
     @Test
     fun `can login with correct credentials`() {
         open(LoginPage::class, "/login")
