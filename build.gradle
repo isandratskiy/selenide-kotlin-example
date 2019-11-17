@@ -7,11 +7,7 @@ apply plugin: 'kotlin'
 apply plugin: 'io.qameta.allure'
 apply plugin: 'com.adarshr.test-logger'
 
-
-sourceCompatibility = 1.8
-
 buildscript {
-
     ext.allureVersion = '2.12.1'
     ext.allureGradleVersion = '2.8.1'
     ext.kotlinReflectVersion = '1.3.50'
@@ -52,10 +48,10 @@ dependencies {
 }
 
 compileKotlin {
-    kotlinOptions.jvmTarget = 1.8
+    jvmTarget = 1.8
 }
 compileTestKotlin {
-    kotlinOptions.jvmTarget = 1.8
+    jvmTarget = 1.8
 }
 
 tasks.withType(Test) {
@@ -89,17 +85,17 @@ tasks.withType(Test) {
 
 test {
     systemProperties = [
-            'browser': 'Local',
+            'browser': 'local',
             'junit.jupiter.execution.parallel.enabled': false
     ]
 }
 
 task testFirefox(type: Test) {
-    systemProperties['browser'] = 'Firefox'
+    systemProperties['browser'] = 'firefox'
 }
 
 task testChrome(type: Test) {
-    systemProperties['browser'] = 'Chrome'
+    systemProperties['browser'] = 'chrome'
 }
 
 allure {
