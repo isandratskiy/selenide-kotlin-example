@@ -12,7 +12,6 @@ import org.junit.jupiter.api.extension.ExtendWith
 @DisplayName("Available Example tests")
 @ExtendWith(SetupExtension::class)
 class AvailableExampleTest {
-
     @Test
     fun `can open available example`() {
         open(MainPage::class)
