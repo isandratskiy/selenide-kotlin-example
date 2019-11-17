@@ -48,10 +48,10 @@ dependencies {
 }
 
 compileKotlin {
-    jvmTarget = 1.8
+    kotlinOptions.jvmTarget = 1.8
 }
 compileTestKotlin {
-    jvmTarget = 1.8
+    kotlinOptions.jvmTarget = 1.8
 }
 
 tasks.withType(Test) {
