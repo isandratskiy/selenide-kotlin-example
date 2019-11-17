@@ -11,7 +11,7 @@ abstract class AbstractPage {
     }
 
     @Step("Check page URL")
-    fun getCurrentURL(): String? = url().replace(DEFAULT_URL, "")
+    fun getCurrentURL() = url().replace(DEFAULT_URL, "")
 
     @Step("User at page-{pageObjectClass}")
     fun <K : AbstractPage> at(pageObjectClass: KClass<K>): K = pageObjectClass.createInstance()

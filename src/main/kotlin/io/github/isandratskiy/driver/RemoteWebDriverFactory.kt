@@ -17,6 +17,7 @@ class WebDriverFactory {
 private enum class RemoteBrowser {
     Chrome {
         override fun configure() {
+            println("http://${getRemoteHub()}:4444/wd/hub")
             setRemoteCapabilities()
             setRemoteInstance()
             browser = "chrome"
@@ -45,8 +46,15 @@ enum class LocalBrowser {
 
 private fun getBrowserProperty() = getProperty("browser")
 
+private fun getRemoteHub(): String {
+    return when {
+        getProperty("remoteHub").isNullOrEmpty() -> "0.0.0.0"
+        else -> getProperty("remoteHub")
+    }
+}
+
 private fun setRemoteInstance() {
-    remote = "http://0.0.0.0:4444/wd/hub"
+    remote = "http://${getRemoteHub()}:4444/wd/hub"
 }
 
 private fun setRemoteCapabilities() {
