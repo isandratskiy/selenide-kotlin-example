@@ -28,7 +28,6 @@ class WebDriverFactory {
                     browser = "firefox"
                 }
             };
-
             abstract fun configure()
         }
 
@@ -38,7 +37,6 @@ class WebDriverFactory {
                     browser = ChromeDriverProvider::class.qualifiedName
                 }
             };
-
             abstract fun configure()
         }
     }
@@ -47,7 +45,7 @@ class WebDriverFactory {
 private fun getBrowserProperty() = getProperty("browser")
 
 private fun setRemoteInstance() {
-    remote = "http://0.0.0.0:4444/wd/hub"
+    remote = "http://ecsd00300b51.epam.com:4444/wd/hub"
 }
 
 private fun setRemoteCapabilities() {
