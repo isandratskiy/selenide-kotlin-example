@@ -10,8 +10,7 @@ apply plugin: 'com.adarshr.test-logger'
 buildscript {
     ext.allureVersion = '2.12.1'
     ext.allureGradleVersion = '2.8.1'
-    ext.kotlinReflectVersion = '1.3.50'
-    ext.kotlinVersion = '1.3.50'
+    ext.kotlinVersion = '1.3.61'
     ext.junitJupiterVersion = '5.5.2'
     ext.selenideVersion = '5.3.1'
     ext.kluentVersion = '1.49'
@@ -37,7 +36,7 @@ repositories {
 }
 
 dependencies {
-    compile("org.jetbrains.kotlin:kotlin-reflect:${kotlinReflectVersion}")
+    compile("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
     compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
     compile("io.github.bonigarcia:webdrivermanager:${webdriverManagerVersion}")
     compile("org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}")
