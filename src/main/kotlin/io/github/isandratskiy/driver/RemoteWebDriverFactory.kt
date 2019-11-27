@@ -45,7 +45,7 @@ class WebDriverFactory {
 private fun getBrowserProperty() = getProperty("browser")
 
 private fun setRemoteInstance() {
-    remote = "http://ecsd00300b51.epam.com:4444/wd/hub"
+    remote = "http://0.0.0.0:4444/wd/hub"
 }
 
 private fun setRemoteCapabilities() {
