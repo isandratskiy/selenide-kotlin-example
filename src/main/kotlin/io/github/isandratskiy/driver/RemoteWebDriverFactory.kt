@@ -45,7 +45,7 @@ class WebDriverFactory {
 private fun getBrowserProperty() = getProperty("browser")
 
 private fun setRemoteInstance() {
-    remote = "http://0.0.0.0:4444/wd/hub"
+    remote = "http://selenoid:4444/wd/hub"
 }
 
 private fun setRemoteCapabilities() {
