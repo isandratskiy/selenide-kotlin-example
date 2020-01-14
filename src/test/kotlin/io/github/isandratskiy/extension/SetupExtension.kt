@@ -8,7 +8,6 @@ import org.junit.jupiter.api.extension.*
 import io.qameta.allure.selenide.AllureSelenide as Allure
 
 class SetupExtension : BeforeEachCallback, AfterEachCallback {
-
     override fun beforeEach(context: ExtensionContext?) {
         addListener("allure", Allure().screenshots(true).savePageSource(false))
         baseUrl = "https://the-internet.herokuapp.com"
