@@ -8,36 +8,36 @@ import io.github.isandratskiy.driver.WebDriverFactory.Companion.RemoteBrowser.*
 class WebDriverFactory {
     companion object {
         fun createWebDriverInstance() = when (getBrowserProperty()) {
-            Firefox.toString().toLowerCase() -> Firefox.configure()
-            Chrome.toString().toLowerCase() -> Chrome.configure()
-            else -> LocalBrowser.Chrome.configure()
+            Firefox.toString().toLowerCase() -> Firefox.start()
+            Chrome.toString().toLowerCase() -> Chrome.start()
+            else -> LocalBrowser.Chrome.start()
         }
 
         private enum class RemoteBrowser {
             Chrome {
-                override fun configure() {
+                override fun start() {
                     setRemoteCapabilities()
                     setRemoteInstance()
                     browser = "chrome"
                 }
             },
             Firefox {
-                override fun configure() {
+                override fun start() {
                     setRemoteCapabilities()
                     setRemoteInstance()
                     browser = "firefox"
                 }
             };
-            abstract fun configure()
+            abstract fun start()
         }
 
         enum class LocalBrowser {
             Chrome {
-                override fun configure() {
+                override fun start() {
                     browser = ChromeDriverProvider::class.qualifiedName
                 }
             };
-            abstract fun configure()
+            abstract fun start()
         }
     }
 }
@@ -45,7 +45,8 @@ class WebDriverFactory {
 private fun getBrowserProperty() = getProperty("browser")
 
 private fun setRemoteInstance() {
-    remote = "http://selenoid:4444/wd/hub"
+    remote = if (getProperty("jenkins") == "true") "http://selenoid:4444/wd/hub"
+    else "http://0.0.0.0:4444/wd/hub"
 }
 
 private fun setRemoteCapabilities() {
