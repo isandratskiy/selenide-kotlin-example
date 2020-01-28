@@ -83,7 +83,8 @@ tasks.withType(Test) {
 
 test {
     systemProperties = [
-            'browser': 'local',
+            'browser': "${browser}",
+            'jenkins': "${jenkins}",
             'junit.jupiter.execution.parallel.enabled': false
     ]
 }
@@ -95,7 +96,7 @@ task testFirefox(type: Test) {
 
 task testChrome(type: Test) {
     systemProperties['browser'] = 'chrome'
-    systemProperties['browser'] = "${jenkins}"
+    systemProperties['jenkins'] = "${jenkins}"
 }
 
 allure {

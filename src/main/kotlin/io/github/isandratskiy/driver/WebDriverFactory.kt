@@ -44,9 +44,13 @@ class WebDriverFactory {
 
 private fun getBrowserProperty() = getProperty("browser")
 
+private fun getJenkinsProperty() = getProperty("jenkins")
+
 private fun setRemoteInstance() {
-    remote = if (getProperty("jenkins") == "true") "http://selenoid:4444/wd/hub"
-    else "http://0.0.0.0:4444/wd/hub"
+    remote = when (getJenkinsProperty()) {
+        "true" -> "http://selenoid:4444/wd/hub"
+        else -> "http://0.0.0.0:4444/wd/hub"
+    }
 }
 
 private fun setRemoteCapabilities() {
