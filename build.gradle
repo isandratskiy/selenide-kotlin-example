@@ -1,4 +1,3 @@
-
 group 'selenide_kotlin_practice'
 version '0.0.1'
 
@@ -91,10 +90,12 @@ test {
 
 task testFirefox(type: Test) {
     systemProperties['browser'] = 'firefox'
+    systemProperties['jenkins'] = "${jenkins}"
 }
 
 task testChrome(type: Test) {
     systemProperties['browser'] = 'chrome'
+    systemProperties['browser'] = "${jenkins}"
 }
 
 allure {
