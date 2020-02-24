@@ -9,7 +9,6 @@ import io.qameta.allure.Step
 class MainPage(
 private val element: SelenideElement = element("#content.large-12")
 ) : AbstractPage() {
-
     private fun getExamplesList(): ElementsCollection = element.`$$`(".columns ul li a")
 
     @Step("Open available example: {exampleTypes} page")

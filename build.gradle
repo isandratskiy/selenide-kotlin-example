@@ -1,20 +1,19 @@
-group 'selenide_kotlin_practice'
-version '0.0.1'
+group "selenide_kotlin_practice"
+version "0.0.1"
 
-apply plugin: 'java'
-apply plugin: 'kotlin'
-apply plugin: 'io.qameta.allure'
-apply plugin: 'com.adarshr.test-logger'
+apply plugin: "java"
+apply plugin: "kotlin"
+apply plugin: "io.qameta.allure"
+apply plugin: "com.adarshr.test-logger"
 
 buildscript {
-    ext.allureVersion = '2.12.1'
-    ext.allureGradleVersion = '2.8.1'
-    ext.kotlinVersion = '1.3.61'
-    ext.junitJupiterVersion = '5.6.0'
-    ext.selenideVersion = '5.6.1'
-    ext.kluentVersion = '1.49'
-    ext.webdriverManagerVersion = '2.2.1'
-    ext.gradleLoggerVersion = '1.7.0'
+    ext.allureVersion = "2.13.1"
+    ext.allureGradleVersion = "2.8.1"
+    ext.kotlinVersion = "1.3.61"
+    ext.junitJupiterVersion = "5.6.0"
+    ext.selenideVersion = "5.7.0"
+    ext.kluentVersion = "1.49"
+    ext.gradleLoggerVersion = "1.7.0"
 
     repositories {
         jcenter()
@@ -23,9 +22,9 @@ buildscript {
         }
     }
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}"
-        classpath "io.qameta.allure:allure-gradle:${allureGradleVersion}"
-        classpath "com.adarshr:gradle-test-logger-plugin:${gradleLoggerVersion}"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "io.qameta.allure:allure-gradle:$allureGradleVersion"
+        classpath "com.adarshr:gradle-test-logger-plugin:$gradleLoggerVersion"
     }
 }
 
@@ -35,14 +34,13 @@ repositories {
 }
 
 dependencies {
-    compile("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
-    compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
-    compile("io.github.bonigarcia:webdrivermanager:${webdriverManagerVersion}")
-    compile("org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}")
-    compile("com.codeborne:selenide:${selenideVersion}")
-    compile("io.qameta.allure:allure-selenide:${allureVersion}")
-    compile("org.amshove.kluent:kluent:${kluentVersion}")
-    testCompile("org.junit.jupiter:junit-jupiter:${junitJupiterVersion}")
+    compile("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
+    compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
+    compile("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
+    compile("com.codeborne:selenide:$selenideVersion")
+    compile("io.qameta.allure:allure-selenide:$allureVersion")
+    compile("org.amshove.kluent:kluent:$kluentVersion")
+    testCompile("org.junit.jupiter:junit-jupiter:$junitJupiterVersion")
 }
 
 compileKotlin {
@@ -53,12 +51,11 @@ compileTestKotlin {
 }
 
 tasks.withType(Test) {
-
     useJUnitPlatform()
 
     testLogging {
         testlogger {
-            theme 'mocha-parallel'
+            theme "mocha-parallel"
             showStandardStreams false
             showExceptions true
             showSummary true
@@ -75,41 +72,41 @@ tasks.withType(Test) {
     }
 
     systemProperties = [
-            'junit.jupiter.execution.parallel.enabled': true,
-            'junit.jupiter.execution.parallel.config.strategy': 'fixed',
-            'junit.jupiter.execution.parallel.config.fixed.parallelism': 2
+            "junit.jupiter.execution.parallel.enabled": true,
+            "junit.jupiter.execution.parallel.config.strategy": "fixed",
+            "junit.jupiter.execution.parallel.config.fixed.parallelism": 2
     ]
+}
+
+tasks.withType(Wrapper) {
+    gradleVersion = "6.2"
 }
 
 test {
     systemProperties = [
-            'browser': "${browser}",
-            'jenkins': "${jenkins}",
-            'junit.jupiter.execution.parallel.enabled': false
+            "browser": "$browser",
+            "jenkins": "$jenkins",
+            "junit.jupiter.execution.parallel.enabled": false
     ]
 }
 
 task testFirefox(type: Test) {
-    systemProperties['browser'] = 'firefox'
-    systemProperties['jenkins'] = "${jenkins}"
+    systemProperties["browser"] = "firefox"
+    systemProperties["jenkins"] = "$jenkins"
 }
 
 task testChrome(type: Test) {
-    systemProperties['browser'] = 'chrome'
-    systemProperties['jenkins'] = "${jenkins}"
+    systemProperties["browser"] = "chrome"
+    systemProperties["jenkins"] = "$jenkins"
 }
 
 allure {
     version = allureVersion
     aspectjweaver = true
-    aspectjVersion = '1.8.10'
-    configuration = 'compile'
+    aspectjVersion = "1.8.10"
+    configuration = "compile"
 
     useJUnit5 {
         version = allureVersion
     }
-}
-
-task updateGradle(type: Wrapper) {
-    gradleVersion = '6.1.1'
 }
