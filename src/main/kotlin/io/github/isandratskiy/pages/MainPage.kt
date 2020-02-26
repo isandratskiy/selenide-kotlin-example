@@ -7,9 +7,10 @@ import com.codeborne.selenide.SelenideElement
 import io.qameta.allure.Step
 
 class MainPage(
-private val element: SelenideElement = element("#content.large-12")
+        private val container: SelenideElement = element("#content.large-12")
 ) : AbstractPage() {
-    private fun getExamplesList(): ElementsCollection = element.`$$`(".columns ul li a")
+
+    private fun getExamplesList(): ElementsCollection = container.`$$`(".columns ul li a")
 
     @Step("Open available example: {exampleTypes} page")
     fun openAvailableExample(exampleTypes: ExampleTypes): MainPage {

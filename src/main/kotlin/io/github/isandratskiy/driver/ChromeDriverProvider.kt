@@ -7,8 +7,6 @@ import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.remote.DesiredCapabilities
 import org.openqa.selenium.chrome.ChromeOptions
 
-
-
 class ChromeDriverProvider : WebDriverProvider {
     override fun createDriver(desiredCapabilities: DesiredCapabilities?): WebDriver {
         chromedriver().setup()

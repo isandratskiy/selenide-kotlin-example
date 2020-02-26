@@ -3,40 +3,36 @@ package io.github.isandratskiy.driver
 import com.codeborne.selenide.Configuration.*
 import java.lang.System.*
 import com.codeborne.selenide.Configuration.browser
-import io.github.isandratskiy.driver.WebDriverFactory.Companion.RemoteBrowser.*
 
 class WebDriverFactory {
     companion object {
         fun createWebDriverInstance() = when (getBrowserProperty()) {
-            Firefox.toString().toLowerCase() -> Firefox.start()
-            Chrome.toString().toLowerCase() -> Chrome.start()
-            else -> LocalBrowser.Chrome.start()
+            "firefox" -> Browser.FIREFOX_REMOTE.start()
+            "chrome" -> Browser.CHROME_REMOTE.start()
+            else -> Browser.CHROME_LOCAL.start()
         }
 
-        private enum class RemoteBrowser {
-            Chrome {
+        private enum class Browser {
+            CHROME_REMOTE {
                 override fun start() {
                     setRemoteCapabilities()
                     setRemoteInstance()
                     browser = "chrome"
                 }
             },
-            Firefox {
+            FIREFOX_REMOTE {
                 override fun start() {
                     setRemoteCapabilities()
                     setRemoteInstance()
                     browser = "firefox"
                 }
-            };
-            abstract fun start()
-        }
-
-        enum class LocalBrowser {
-            Chrome {
+            },
+            CHROME_LOCAL {
                 override fun start() {
                     browser = ChromeDriverProvider::class.qualifiedName
                 }
             };
+
             abstract fun start()
         }
     }

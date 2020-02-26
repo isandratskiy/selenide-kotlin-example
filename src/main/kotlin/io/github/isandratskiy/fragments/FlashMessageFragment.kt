@@ -6,9 +6,9 @@ import com.codeborne.selenide.SelenideElement
 import io.qameta.allure.Step
 
 class FlashMessageFragment (
-    private val fragment : SelenideElement = element("#flash-messages").shouldBe(visible)
-) : AbstractFragment(fragment) {
+    private val container : SelenideElement = element("#flash-messages").shouldBe(visible)
+) : AbstractFragment(container) {
 
     @Step("Error message is displayed")
-    fun getMessage(): SelenideElement = fragment
+    fun getMessage(): SelenideElement = container
 }

@@ -8,7 +8,7 @@ import kotlin.reflect.KClass
 import kotlin.reflect.full.createInstance
 
 @Step("Open {url} page")
-fun <K : AbstractPage> open(pageObjectClass: KClass<K>, url: String = EMPTY): K {
+fun <K : AbstractPage> open(pageClass: KClass<K>, url: String = EMPTY): K {
     open(url)
-    return pageObjectClass.createInstance()
+    return pageClass.createInstance()
 }

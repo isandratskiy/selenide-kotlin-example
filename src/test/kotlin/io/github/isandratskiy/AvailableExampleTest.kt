@@ -4,7 +4,7 @@ import io.github.isandratskiy.core.open
 import io.github.isandratskiy.extension.SetupExtension
 import io.github.isandratskiy.pages.ExampleTypes.*
 import io.github.isandratskiy.pages.MainPage
-import org.amshove.kluent.shouldEqual
+import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -16,6 +16,6 @@ class AvailableExampleTest {
     fun `can open available example`() {
         open(MainPage::class)
             .openAvailableExample(FORM_AUTHENTICATION)
-            .getCurrentURL().shouldEqual("/login")
+            .getCurrentURL().shouldBeEqualTo("/login")
     }
 }
