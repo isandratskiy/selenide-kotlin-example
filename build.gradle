@@ -74,7 +74,7 @@ tasks.withType(Test) {
     systemProperties = [
             "junit.jupiter.execution.parallel.enabled": true,
             "junit.jupiter.execution.parallel.config.strategy": "fixed",
-            "junit.jupiter.execution.parallel.config.fixed.parallelism": 2
+            "junit.jupiter.execution.parallel.config.fixed.parallelism": "$thread"
     ]
 }
 
@@ -83,20 +83,17 @@ tasks.withType(Wrapper) {
 }
 
 test {
-    systemProperties = [
-            "browser": "$browser",
-            "jenkins": "$jenkins",
-            "junit.jupiter.execution.parallel.enabled": false
-    ]
+    systemProperties["jenkins"] = "$jenkins"
+    systemProperties["browser"] = "chrome.local"
 }
 
 task testFirefox(type: Test) {
-    systemProperties["browser"] = "firefox"
+    systemProperties["browser"] = "firefox.$launch"
     systemProperties["jenkins"] = "$jenkins"
 }
 
 task testChrome(type: Test) {
-    systemProperties["browser"] = "chrome"
+    systemProperties["browser"] = "chrome.$launch"
     systemProperties["jenkins"] = "$jenkins"
 }
 

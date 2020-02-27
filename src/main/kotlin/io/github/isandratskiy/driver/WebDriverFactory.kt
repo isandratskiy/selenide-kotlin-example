@@ -7,8 +7,8 @@ import com.codeborne.selenide.Configuration.browser
 class WebDriverFactory {
     companion object {
         fun createWebDriverInstance() = when (getBrowserProperty()) {
-            "firefox" -> Browser.FIREFOX_REMOTE.start()
-            "chrome" -> Browser.CHROME_REMOTE.start()
+            "firefox.remote" -> Browser.FIREFOX_REMOTE.start()
+            "chrome.remote" -> Browser.CHROME_REMOTE.start()
             else -> Browser.CHROME_LOCAL.start()
         }
 
