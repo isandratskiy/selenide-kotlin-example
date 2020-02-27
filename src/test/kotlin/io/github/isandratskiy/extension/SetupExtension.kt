@@ -1,7 +1,7 @@
 package io.github.isandratskiy.extension
 
 import com.codeborne.selenide.WebDriverRunner.*
-import io.github.isandratskiy.core.buildConfiguration
+import io.github.isandratskiy.core.Configuration.Companion.buildConfiguration
 import io.github.isandratskiy.driver.WebDriverFactory.Companion.createWebDriverInstance
 import org.junit.jupiter.api.extension.*
 
