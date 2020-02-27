@@ -83,8 +83,8 @@ tasks.withType(Wrapper) {
 }
 
 test {
-    systemProperties["jenkins"] = "$jenkins"
     systemProperties["browser"] = "chrome.local"
+    systemProperties["jenkins"] = "$jenkins"
 }
 
 task testFirefox(type: Test) {
