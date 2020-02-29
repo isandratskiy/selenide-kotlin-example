@@ -4,6 +4,7 @@ version "0.0.1"
 apply plugin: "java"
 apply plugin: "kotlin"
 apply plugin: "io.qameta.allure"
+apply plugin: "org.gradle.test-retry"
 apply plugin: "com.adarshr.test-logger"
 
 buildscript {
@@ -14,6 +15,7 @@ buildscript {
     ext.selenideVersion = "5.7.0"
     ext.kluentVersion = "1.60"
     ext.gradleLoggerVersion = "1.7.0"
+    ext.gradleRetryVersion = "1.1.3"
 
     repositories {
         jcenter()
@@ -25,6 +27,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "io.qameta.allure:allure-gradle:$allureGradleVersion"
         classpath "com.adarshr:gradle-test-logger-plugin:$gradleLoggerVersion"
+        classpath "org.gradle:test-retry-gradle-plugin:$gradleRetryVersion"
     }
 }
 
@@ -67,8 +70,10 @@ tasks.withType(Test) {
         }
     }
 
-    reports {
-        html.enabled = true
+    retry {
+        maxRetries = 2
+        maxFailures = 10
+        failOnPassedAfterRetry = false
     }
 
     systemProperties = [
