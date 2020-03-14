@@ -38,7 +38,7 @@ class WebDriverFactory {
     }
 }
 
-private fun getBrowserProperty() = getProperty("browser")
+private fun getBrowserProperty() = getProperty("launch")
 
 private fun getJenkinsProperty() = getProperty("jenkins")!!.toBoolean()
 

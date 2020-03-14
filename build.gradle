@@ -71,7 +71,7 @@ tasks.withType(Test) {
     }
 
     retry {
-        maxRetries = 2
+        maxRetries = 1
         maxFailures = 10
         failOnPassedAfterRetry = false
     }
@@ -88,17 +88,17 @@ tasks.withType(Wrapper) {
 }
 
 test {
-    systemProperties["browser"] = "chrome.local"
+    systemProperties["launch"] = "chrome.local"
     systemProperties["jenkins"] = "$jenkins"
 }
 
 task testFirefox(type: Test) {
-    systemProperties["browser"] = "firefox.$launch"
+    systemProperties["launch"] = "firefox.$launch"
     systemProperties["jenkins"] = "$jenkins"
 }
 
 task testChrome(type: Test) {
-    systemProperties["browser"] = "chrome.$launch"
+    systemProperties["launch"] = "chrome.$launch"
     systemProperties["jenkins"] = "$jenkins"
 }
 
