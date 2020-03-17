@@ -13,7 +13,10 @@ jobs:
           java-version: 1.8
 
       - name: Set up Selenoid Infrastructure
-        run: ./selenoid_start.sh
+        run: make start
 
       - name: Run UI-Automation tests with Chrome browser
         run: ./gradlew clean -Plaunch=remote -Pthread=5 testChrome
+
+      - name: Shutdown Selenoid Infrastructure
+          run: make stop
