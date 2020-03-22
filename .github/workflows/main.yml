@@ -16,7 +16,7 @@ jobs:
         run: make start
 
       - name: Run UI-Automation tests with Chrome browser
-        run: ./gradlew clean -Plaunch=remote -Pthread=5 testChrome
+        run: make test
 
       - name: Shutdown Selenoid Infrastructure
         run: make stop
