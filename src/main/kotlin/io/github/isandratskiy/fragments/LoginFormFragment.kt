@@ -11,9 +11,9 @@ class LoginFormFragment(
 
     @Step("Log in as user '{username}' with password '{password}'")
     fun loginWith(username: String, password: String): SecurePage {
-        container.`$`("#username").value = username
-        container.`$`("#password").value = password
-        container.`$`("button.radius").click()
+        container.find("#username").value = username
+        container.find("#password").value = password
+        container.find("button.radius").click()
         return SecurePage()
     }
 }

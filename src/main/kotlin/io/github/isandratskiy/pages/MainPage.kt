@@ -10,7 +10,7 @@ class MainPage(
         private val container: SelenideElement = element("#content.large-12")
 ) : AbstractPage() {
 
-    private fun getExamplesList(): ElementsCollection = container.`$$`(".columns ul li a")
+    private fun getExamplesList(): ElementsCollection = container.findAll(".columns ul li a")
 
     @Step("Open available example: {exampleTypes} page")
     fun openAvailableExample(exampleTypes: ExampleTypes): MainPage {
