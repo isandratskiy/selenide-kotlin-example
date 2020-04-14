@@ -1,9 +1,9 @@
 {
     "chrome": {
-        "default": "80.0",
+        "default": "81.0",
         "versions": {
-            "80.0": {
-                "image": "selenoid/vnc:chrome_80.0",
+            "81.0": {
+                "image": "selenoid/vnc:chrome_81.0",
                 "port": "4444",
                 "path": "/",
                 "tmpfs": {
