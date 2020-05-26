@@ -13,22 +13,23 @@ import org.junit.jupiter.api.parallel.ExecutionMode.*
 @Execution(CONCURRENT)
 @ExtendWith(SetupExtension::class)
 class LoginTest {
+
     @Test
     fun `can login with correct credentials`() {
         open(LoginPage::class, "/login")
-            .getLoginForm()
-            .loginWith("tomsmith", "SuperSecretPassword!")
-            .getFlashMessage()
-            .getText().shouldContain("You logged into a secure area!")
+                .getLoginForm()
+                .loginWith("tomsmith", "SuperSecretPassword!")
+                .getFlashMessage()
+                .getText()?.shouldContain("You logged into a secure area!")
     }
 
     @Test
     fun `can't login with fake credentials`() {
         open(LoginPage::class, "/login")
-            .getLoginForm()
-            .loginWith("johndoe", "InvalidPassword!")
-            .at(LoginPage::class)
-            .getFlashMessage()
-            .getText().shouldContain("Your username is invalid!")
+                .getLoginForm()
+                .loginWith("johndoe", "InvalidPassword!")
+                .at(LoginPage::class)
+                .getFlashMessage()
+                .getText()?.shouldContain("Your username is invalid!")
     }
 }

@@ -14,10 +14,11 @@ import org.junit.jupiter.api.parallel.ExecutionMode
 @Execution(ExecutionMode.CONCURRENT)
 @ExtendWith(SetupExtension::class)
 class UploadFileTest {
+
     @Test
     fun `can upload file from classpath`() {
         open(UploadFilePage::class, "/upload")
-            .uploadFile("hello_world.txt")
-            .getUploadStatus().shouldContain("File Uploaded!")
+                .uploadFile("hello_world.txt")
+                .getUploadStatus()?.shouldContain("File Uploaded!")
     }
 }

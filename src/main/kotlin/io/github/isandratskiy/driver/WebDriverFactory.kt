@@ -50,7 +50,6 @@ private fun setRemoteInstance() {
 }
 
 private fun setRemoteCapabilities() {
-    browserCapabilities.acceptInsecureCerts()
     browserCapabilities.setCapability("noProxy", true)
     browserCapabilities.setCapability("enableVNC", true)
     browserCapabilities.setCapability("enableVideo", false)
