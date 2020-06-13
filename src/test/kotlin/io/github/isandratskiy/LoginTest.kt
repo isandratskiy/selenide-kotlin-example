@@ -1,17 +1,13 @@
 package io.github.isandratskiy
 
 import io.github.isandratskiy.core.open
+import io.github.isandratskiy.extension.BaseSetup
 import io.github.isandratskiy.pages.LoginPage
 import org.amshove.kluent.shouldContain
 import org.junit.jupiter.api.*
-import io.github.isandratskiy.extension.SetupExtension
-import org.junit.jupiter.api.extension.ExtendWith
-import org.junit.jupiter.api.parallel.Execution
-import org.junit.jupiter.api.parallel.ExecutionMode.*
 
+@BaseSetup
 @DisplayName("Login Form Authentication tests")
-@Execution(CONCURRENT)
-@ExtendWith(SetupExtension::class)
 class LoginTest {
 
     @Test
@@ -20,7 +16,8 @@ class LoginTest {
                 .getLoginForm()
                 .loginWith("tomsmith", "SuperSecretPassword!")
                 .getFlashMessage()
-                .getText()?.shouldContain("You logged into a secure area!")
+                .getText()
+                .shouldContain("You logged into a secure area!")
     }
 
     @Test
@@ -30,6 +27,7 @@ class LoginTest {
                 .loginWith("johndoe", "InvalidPassword!")
                 .at(LoginPage::class)
                 .getFlashMessage()
-                .getText()?.shouldContain("Your username is invalid!")
+                .getText()
+                .shouldContain("Your username is invalid!")
     }
 }

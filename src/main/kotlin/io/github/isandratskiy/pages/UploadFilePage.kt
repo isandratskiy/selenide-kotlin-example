@@ -13,5 +13,5 @@ class UploadFilePage : AbstractPage() {
     }
 
     @Step("Get upload status")
-    fun getUploadStatus(): String? = element("h3").text
+    fun getUploadStatus(): String = element("h3").text!!
 }
