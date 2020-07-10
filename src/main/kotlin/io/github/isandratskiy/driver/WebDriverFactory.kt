@@ -40,7 +40,7 @@ class WebDriverFactory {
 
 private fun getBrowserProperty() = getProperty("launch")
 
-private fun getJenkinsProperty() = getProperty("jenkins")!!.toBoolean()
+private fun getJenkinsProperty() = getProperty("jenkins")?.toBoolean()?:false
 
 private fun setRemoteInstance() {
     remote = when (getJenkinsProperty()) {
