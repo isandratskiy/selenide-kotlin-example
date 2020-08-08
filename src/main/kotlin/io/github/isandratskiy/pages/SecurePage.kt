@@ -2,7 +2,11 @@ package io.github.isandratskiy.pages
 
 import io.github.isandratskiy.fragments.FlashMessageFragment
 
-class SecurePage : AbstractPage() {
+class SecurePage(function: SecurePage.() -> Unit = {}) : AbstractPage() {
 
-    fun getFlashMessage() : FlashMessageFragment = FlashMessageFragment()
+    init {
+        this.function()
+    }
+
+    fun getFlashMessage() : String = FlashMessageFragment().getText()
 }

@@ -3,9 +3,15 @@ package io.github.isandratskiy.pages
 import io.github.isandratskiy.fragments.FlashMessageFragment
 import io.github.isandratskiy.fragments.LoginFormFragment
 
-class LoginPage : AbstractPage() {
+class LoginPage(function: LoginPage.() -> Unit = {}) : AbstractPage() {
 
-    fun getLoginForm(): LoginFormFragment = LoginFormFragment()
+    init {
+        this.function()
+    }
 
-    fun getFlashMessage() : FlashMessageFragment = FlashMessageFragment()
+    fun loginAs(username: String, password: String) {
+        LoginFormFragment().login(username, password)
+    }
+
+    fun getFlashMessage(): String = FlashMessageFragment().getText()
 }
