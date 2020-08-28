@@ -14,8 +14,6 @@ class LoginFormFragment(
         container.find("#username").value = username
         container.find("#password").value = password
         container.find("button.radius").click()
-        return SecurePage {
-
-        }
+        return SecurePage()
     }
 }

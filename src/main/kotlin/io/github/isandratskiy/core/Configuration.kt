@@ -14,4 +14,6 @@ fun setSelenideConfiguration() {
     Configuration.browserSize = "1920x1080"
     Configuration.fastSetValue = true
     Configuration.timeout = 10000
+    Configuration.savePageSource = false
+    Configuration.screenshots = false
 }
