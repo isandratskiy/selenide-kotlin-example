@@ -10,9 +10,9 @@ apply plugin: "com.adarshr.test-logger"
 buildscript {
     ext.allureVersion = "2.13.1"
     ext.allureGradleVersion = "2.8.1"
-    ext.kotlinVersion = "1.3.72"
+    ext.kotlinVersion = "1.4.0"
     ext.junitJupiterVersion = "5.6.2"
-    ext.selenideVersion = "5.12.1"
+    ext.selenideVersion = "5.14.2"
     ext.kluentVersion = "1.60"
     ext.gradleLoggerVersion = "1.7.0"
     ext.gradleRetryVersion = "1.1.3"
@@ -33,7 +33,6 @@ buildscript {
 
 repositories {
     jcenter()
-    mavenCentral()
 }
 
 dependencies {
@@ -83,10 +82,6 @@ tasks.withType(Test) {
     ]
 }
 
-tasks.withType(Wrapper) {
-    gradleVersion = "6.2"
-}
-
 test {
     systemProperties["launch"] = "chrome.local"
     systemProperties["jenkins"] = "$jenkins"
@@ -111,4 +106,8 @@ allure {
     useJUnit5 {
         version = allureVersion
     }
+}
+
+tasks.withType(Wrapper) {
+    gradleVersion = "6.2"
 }
