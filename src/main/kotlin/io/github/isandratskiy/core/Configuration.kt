@@ -1,11 +1,13 @@
 package io.github.isandratskiy.core
 
 import com.codeborne.selenide.Configuration.*
-import com.codeborne.selenide.logevents.SelenideLogger.*
+import com.codeborne.selenide.logevents.SelenideLogger.addListener
 import io.qameta.allure.selenide.AllureSelenide
 
 class Configuration {
+
     companion object {
+        @JvmStatic
         fun buildConfiguration() {
             setSelenideConfiguration()
         }
@@ -16,6 +18,8 @@ class Configuration {
             browserSize = "1920x1080"
             fastSetValue = true
             timeout = 10000
+            savePageSource = false
+            screenshots = false
         }
     }
 }

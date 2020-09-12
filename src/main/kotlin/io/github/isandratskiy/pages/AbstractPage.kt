@@ -1,11 +1,12 @@
 package io.github.isandratskiy.pages
 
-import com.codeborne.selenide.WebDriverRunner.*
+import com.codeborne.selenide.WebDriverRunner.url
 import io.qameta.allure.Step
 import kotlin.reflect.KClass
 import kotlin.reflect.full.createInstance
 
 abstract class AbstractPage {
+
     companion object {
         const val DEFAULT_URL = "https://the-internet.herokuapp.com"
     }

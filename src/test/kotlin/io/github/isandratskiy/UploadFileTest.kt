@@ -1,6 +1,5 @@
 package io.github.isandratskiy
 
-import io.github.isandratskiy.core.open
 import io.github.isandratskiy.extension.BaseSetup
 import io.github.isandratskiy.pages.UploadFilePage
 import org.amshove.kluent.shouldContain
@@ -13,7 +12,7 @@ class UploadFileTest {
 
     @Test
     fun `can upload file from classpath`() {
-        open(UploadFilePage::class, "/upload")
+        UploadFilePage.open()
                 .uploadFile("hello_world.txt")
                 .getUploadStatus()
                 .shouldContain("File Uploaded!")
