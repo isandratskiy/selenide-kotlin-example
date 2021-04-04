@@ -1,6 +1,8 @@
 name: Run UI-Automation Tests
 
-on: [push]
+on:
+  push:
+
   schedule:
     - cron: '0 2 * * 0-6'
 
