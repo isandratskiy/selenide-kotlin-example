@@ -10,7 +10,7 @@ apply plugin: "com.adarshr.test-logger"
 buildscript {
     ext.allureVersion = "2.13.1"
     ext.allureGradleVersion = "2.8.1"
-    ext.kotlinVersion = "1.4.0"
+    ext.kotlinVersion = "1.4.31"
     ext.junitJupiterVersion = "5.6.2"
     ext.selenideVersion = "5.14.2"
     ext.kluentVersion = "1.60"

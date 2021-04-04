@@ -1,12 +1,20 @@
 name: Run UI-Automation Tests
 
 on: [push]
+  schedule:
+    - cron: '0 2 * * 0-6'
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    env:
+      LANG: en_US.UTF-8
+      LC_CTYPE: en_US.UTF-8
+
     steps:
       - uses: actions/checkout@v1
+
       - name: Set up JDK 1.8
         uses: actions/setup-java@v1
         with:
